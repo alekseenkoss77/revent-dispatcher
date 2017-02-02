@@ -13,4 +13,11 @@ defmodule ReventDispatcher.Handler do
     |> cast_assoc(:events)
     |> validate_required([:queue_name])
   end
+
+  def changeset_with_events(handler, params \\ %{}) do
+    handler
+    |> ReventDispatcher.Repo.preload(:events)
+    |> cast(params, [:name, :queue_name])
+    |> cast_assoc(:events)
+  end
 end

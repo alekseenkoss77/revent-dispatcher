@@ -9,3 +9,20 @@
 #
 # We recommend using the bang functions (`insert!`, `update!`
 # and so on) as they will fail if something goes wrong.
+
+alias ReventDispatcher.Repo
+alias ReventDispatcher.Event
+alias ReventDispatcher.Handler
+
+handler_params = %{
+  name: "Email Worker",
+  queue_name: "email_worker",
+  events: [
+    %{name: "account.create"},
+    %{name: "account.update"},
+    %{name: "user.attach.account"}
+  ]
+}
+
+handler = Repo.insert!(Handler.changeset(%Handler{}, handler_params))
+
