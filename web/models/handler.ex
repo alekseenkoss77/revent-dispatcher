@@ -20,4 +20,8 @@ defmodule ReventDispatcher.Handler do
     |> cast(params, [:name, :queue_name])
     |> cast_assoc(:events)
   end
+
+  def get_queues do
+    ReventDispatcher.Repo.all(from h in "handlers", select: h.queue_name)
+  end
 end

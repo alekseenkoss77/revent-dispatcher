@@ -4,6 +4,8 @@ defmodule ReventDispatcher.Dispatcher do
   use GenServer
   use AMQP
 
+  alias ReventDispatcher.WorkerHandler
+
   @queue "revent_queue"
 
   def start_link do
@@ -39,19 +41,13 @@ defmodule ReventDispatcher.Dispatcher do
   end
 
   defp consume(chan, tag, _redelivered, payload) do
-    Basic.ack chan, tag
     Logger.info("Received message: #{payload}")
+    WorkerHandler.push(ReventDispatcher.WorkerHandler, payload)
+    Basic.ack chan, tag
   end
 
   defp start_connection do
-    params = [
-      username: Application.get_env(:revent_dispatcher, :amqp_consume)[:username],
-      password: Application.get_env(:revent_dispatcher, :amqp_consume)[:password],
-      host: Application.get_env(:revent_dispatcher, :amqp_consume)[:host],
-      port: Application.get_env(:revent_dispatcher, :amqp_consume)[:port]
-    ]
-
-    case Connection.open(params) do
+    case Connection.open(Application.get_env(:revent_dispatcher, :amqp_consume)) do
       {:ok, conn} -> 
         Process.monitor(conn.pid)
         {:ok, chan} = Channel.open(conn)

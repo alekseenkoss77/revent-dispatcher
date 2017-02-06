@@ -16,6 +16,13 @@ config :revent_dispatcher, amqp_consume: [
   port: 5672
 ]
 
+config :revent_dispatcher, amqp_output: [
+  username: "guest",
+  password: "guest",
+  host: "localhost",
+  port: 5672
+]
+
 # Configure your database
 config :revent_dispatcher, ReventDispatcher.Repo,
   adapter: Ecto.Adapters.Postgres,

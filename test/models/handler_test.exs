@@ -24,4 +24,12 @@ defmodule ReventDispatcher.HandlerTest do
     [rel | _] = handler.events
     assert rel == event
   end
+
+  test "get_queues" do
+    Repo.insert!(Handler.changeset(%Handler{}, %{queue_name: "email_worker"}))
+    Repo.insert!(Handler.changeset(%Handler{}, %{queue_name: "sms_worker"}))
+
+    queues = Handler.get_queues()
+    assert ["email_worker", "sms_worker"] == queues
+  end
 end

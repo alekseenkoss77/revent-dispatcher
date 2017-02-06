@@ -28,6 +28,13 @@ config :revent_dispatcher, amqp_consume: [
   port: 5672
 ]
 
+config :revent_dispatcher, amqp_output: [
+  username: "guest",
+  password: "guest",
+  host: "localhost",
+  port: 5672
+]
+
 # Watch static and templates for browser reloading.
 config :revent_dispatcher, ReventDispatcher.Endpoint,
   live_reload: [
