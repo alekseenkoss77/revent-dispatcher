@@ -13,14 +13,16 @@ defmodule ReventDispatcher.Router do
     plug :accepts, ["json"]
   end
 
-  scope "/", ReventDispatcher do
-    pipe_through :browser # Use the default browser stack
+  scope "/api", ReventDispatcher do
+    pipe_through :api
 
-    get "/", PageController, :index
+    get "/events", EventController, :index
+    get "/handlers", HandlerController, :index
   end
 
-  # Other scopes may use custom stacks.
-  # scope "/api", ReventDispatcher do
-  #   pipe_through :api
-  # end
+  scope "/", ReventDispatcher do
+    pipe_through :browser
+
+    get "/*page", PageController, :index
+  end
 end
