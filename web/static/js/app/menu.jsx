@@ -1,13 +1,21 @@
 import React from 'react';
-import { Link } from 'react-router'
+import { Link } from 'react-router';
+import { Menu } from 'semantic-ui-react';
 
-const Menu = () => (
+const MainMenu = () => (
   <div>
-    <ul>
-      <li><Link to="/events">Events</Link></li>
-      <li><Link to="/handlers">Handlers</Link></li>
-    </ul>
+    <Menu pointing secondary>
+      <Link to="/events">
+        <Menu.Item name='Events' />
+      </Link>
+      <Link to="/handlers">
+        <Menu.Item name='Handlers' />
+      </Link>
+      <Menu.Menu position='right'>
+        <Menu.Item name='logout' />
+      </Menu.Menu>
+    </Menu>
   </div>
 );
 
-export default Menu;
+export default MainMenu;

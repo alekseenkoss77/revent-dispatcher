@@ -1,6 +1,6 @@
 import axios from "axios";
 import React from "react";
-import Menu from "../menu.jsx";
+import MainMenu from "../menu.jsx";
 import { Icon, Table } from 'semantic-ui-react'
 
 import HandlerItem from "./handler_item.jsx"
@@ -28,7 +28,7 @@ class HandlerList extends React.Component {
   render() {
     return(
       <div>
-        <Menu />
+        <MainMenu />
 
         <Table celled striped>
           <Table.Header>

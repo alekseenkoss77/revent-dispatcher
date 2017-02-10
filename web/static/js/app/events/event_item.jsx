@@ -1,11 +1,12 @@
 import React from "react";
+import { Icon, Table } from "semantic-ui-react";
 
 const EventItem = (props) => (
-  <div className="Event_item">
-    <li>
-      <div>{ props.eventName }</div>
-    </li>
-  </div>
+  <Table.Row>
+    <Table.Cell collapsing>
+      { props.eventName }
+    </Table.Cell>
+  </Table.Row>
 );
 
 export default EventItem;

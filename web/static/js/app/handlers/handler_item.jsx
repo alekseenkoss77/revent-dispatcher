@@ -1,5 +1,5 @@
 import React from "react";
-import { Icon, Table } from 'semantic-ui-react'
+import { Icon, Table } from "semantic-ui-react";
 
 const HandlerItem = (props) => (
   <Table.Row>
