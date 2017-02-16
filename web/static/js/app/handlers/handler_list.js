@@ -1,29 +1,12 @@
 import axios from "axios";
 import React from "react";
-import MainMenu from "../menu.jsx";
+import MainMenu from "../menu.js";
 import { Icon, Table } from 'semantic-ui-react'
 
-import HandlerItem from "./handler_item.jsx"
+import HandlerItem from "./handler_item.js"
 
 class HandlerList extends React.Component {
-  constructor(props) {
-    super(props);
 
-    this.state = {
-      handlers: []
-    }
-  }
-
-  componentDidMount() {
-    axios
-      .get("/api/handlers")
-      .catch((e) => (console.log(e)))
-      .then(
-        (response) => {
-          this.setState({handlers: response.data.handlers});
-        }
-      )
-  }
 
   render() {
     return(

@@ -6,7 +6,9 @@ const HandlerItem = (props) => (
     <Table.Cell collapsing>
       { props.handlerName }
     </Table.Cell>
-    <Table.Cell>{ props.handlerQueueName }</Table.Cell>
+    <Table.Cell>
+      { props.handlerQueueName }
+    </Table.Cell>
   </Table.Row>
 );
 

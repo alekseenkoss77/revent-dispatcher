@@ -1,8 +1,8 @@
 import React from 'react';
 
-import MainPage from "./pages/main.jsx";
-import EventContainer from "./events/event_container.jsx";
-import HandlerList from "./handlers/handler_list.jsx";
+import MainPage from "./pages/main.js";
+import EventContainer from "./events/event_container.js";
+import HandlerList from "./handlers/handler_list.js";
 import { Router, Route, Link, browserHistory } from 'react-router'
 
 const App = () => (

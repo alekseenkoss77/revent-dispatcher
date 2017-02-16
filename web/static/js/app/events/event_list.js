@@ -1,7 +1,6 @@
-import axios from "axios"
 import React from "react";
 import { Icon, Table } from "semantic-ui-react";
-import EventItem from "./event_item.jsx";
+import EventItem from "./event_item.js";
 
 const EventList = (props) => (
    <div>
@@ -13,7 +12,7 @@ const EventList = (props) => (
       </Table.Header>
       <Table.Body>
         { props.eventsList.map((e, id) => (
-            <EventItem key={id} eventName={e.name} />
+            <EventItem key={id} eventKey={id} handleEdit={ props.handleEdit } handleDestroy={props.handleDestroy} eventName={e.name} />
         ))}
       </Table.Body>
     </Table>
