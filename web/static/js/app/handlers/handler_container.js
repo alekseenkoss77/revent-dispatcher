@@ -9,8 +9,13 @@ class HandlerContainer extends React.Component {
     super(props);
 
     this.state = {
-      handlers: []
-    }
+      handlers: [],
+      editableHandler: null
+    };
+
+    this.handleSave = this.handleSave.bind(this);
+    this.handleEdit = this.handleEdit.bind(this);
+    this.handleDestroy = this.handleDestroy.bind(this);
   }
 
   componentDidMount() {
@@ -22,6 +27,28 @@ class HandlerContainer extends React.Component {
           this.setState({handlers: response.data.handlers});
         }
       );
+  }
+
+  handlerSave(e, { formData }) {
+
+  }
+
+  handleDestroy(id) {
+
+  }
+
+  handleEdit(id) {
+
+  }
+
+  render() {
+    return(
+      <div>
+        <MainMenu />
+        <HandlerForm key={ "eventInput" } editableHandler={ this.state.editableEvent } handleSubmit={ this.handleSave } />
+        <HandlerList handleDestroy={this.handleDestroy} handleEdit={ this.handleEdit } eventsList={ this.state.events } />
+      </div>
+    );
   }
 }
 

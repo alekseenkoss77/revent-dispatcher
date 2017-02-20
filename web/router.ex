@@ -17,7 +17,7 @@ defmodule ReventDispatcher.Router do
     pipe_through :api
 
     resources "/events", EventController
-    get "/handlers", HandlerController, :index
+    resources "/handlers", HandlerController
   end
 
   scope "/", ReventDispatcher do
