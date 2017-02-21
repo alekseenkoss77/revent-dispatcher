@@ -8,15 +8,15 @@ defmodule ReventDispatcher.HandlerView do
   end
 
   def render("create.json", %{data: data}) do
-    event_json(data)
+    handler_json(data)
   end
 
   def render("update.json", %{data: data}) do
-    event_json(data)
+    handler_json(data)
   end
 
   def render("destroy.json", %{data: data}) do
-    event_json(data)
+    handler_json(data)
   end
 
   defp handler_json(handler) do

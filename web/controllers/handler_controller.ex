@@ -1,3 +1,4 @@
+require IEx
 defmodule ReventDispatcher.HandlerController do
   use ReventDispatcher.Web, :controller
   
@@ -13,6 +14,7 @@ defmodule ReventDispatcher.HandlerController do
 
     case Repo.insert(changeset) do
       {:ok, handler} ->
+        handler
         render conn, "create.json", data: handler
       {:error, changeset} ->
         conn

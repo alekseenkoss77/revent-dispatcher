@@ -2,12 +2,11 @@ import React from "react";
 import { Button, Form, Input } from "semantic-ui-react";
 
 class HandlerForm extends React.Component {
-  constructor() {
+  constructor(props) {
     super(props);
 
-    this.state = { queueName: '', name: '' };
+    this.state = { queue_name: '', name: '' };
 
-    this.handleSubmit = this.handleSubmit.bind(this);
     this.handleChange = this.handleChange.bind(this);
   }
 
@@ -15,12 +14,12 @@ class HandlerForm extends React.Component {
     if (newProps.editableHandler) {
       this.setState({
         name: newProps.editableHandler.name,
-        queueName: newProps.editableHandler.queue_name
+        queue_name: newProps.editableHandler.queue_name
       });
     } else {
       this.setState({
         name: '',
-        queueName: ''
+        queue_name: ''
       });
     }
   }
@@ -41,7 +40,7 @@ class HandlerForm extends React.Component {
         <Form onSubmit={this.props.handleSubmit}>
           <Form.Group widths='equal'>
             <Form.Input label='Name' name='name' placeholder='Name' onChange={ this.handleChange } value={ this.state.name } />
-            <Form.Input label='Queue' name='queueName' placeholder='Queue name' onChange={ this.handleChange } value={ this.state.queueName } />
+            <Form.Input label='Queue' name='queue_name' placeholder='Queue name' onChange={ this.handleChange } value={ this.state.queue_name } />
           </Form.Group>
           <Button primary type='submit'>Save</Button>
         </Form>

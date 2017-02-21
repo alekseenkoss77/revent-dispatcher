@@ -24,13 +24,46 @@ class HandlerContainer extends React.Component {
       .catch((e) => (console.log(e)))
       .then(
         (response) => {
-          this.setState({handlers: response.data.handlers});
+          this.setState({
+            handlers: response.data.handlers,
+            editableEvent: null
+          });
         }
       );
   }
 
-  handlerSave(e, { formData }) {
+  handleSave(e, { formData }) {
+    e.preventDefault();
+    const handler = this.state.editableHandler;
+    var target = e.target;
 
+    if(handler) {
+      axios
+        .put("/api/handlers/" + handler.id, {"handler" : formData})
+        .catch((e) => (console.log(e)))
+        .then(
+          (response) => {
+            let handlers = this.state.handlers;
+            handlers[handler.key] = response.data;
+            this.setState({
+              handlers: handlers,
+              editableHandler: null
+            });
+          }
+        );
+    } else {
+      axios
+        .post("/api/handlers", { "handler": formData })
+        .catch((e) => (console.log(e)))
+        .then(
+          (response) => {
+            this.setState({
+              handlers: this.state.handlers.concat(response.data),
+              editableHandler: null
+            });
+          }
+        )
+    }
   }
 
   handleDestroy(id) {
@@ -46,7 +79,7 @@ class HandlerContainer extends React.Component {
       <div>
         <MainMenu />
         <HandlerForm key={ "eventInput" } editableHandler={ this.state.editableEvent } handleSubmit={ this.handleSave } />
-        <HandlerList handleDestroy={this.handleDestroy} handleEdit={ this.handleEdit } eventsList={ this.state.events } />
+        <HandlerList handleDestroy={this.handleDestroy} handleEdit={ this.handleEdit } handlersList={ this.state.handlers } />
       </div>
     );
   }

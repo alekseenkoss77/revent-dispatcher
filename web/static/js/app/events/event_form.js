@@ -7,7 +7,6 @@ class EventForm extends React.Component {
     
     this.state = { eventVal: '' };
 
-    this.handleSubmit = this.handleSubmit.bind(this);
     this.handleChange = this.handleChange.bind(this);
   }
 

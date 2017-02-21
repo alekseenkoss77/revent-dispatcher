@@ -19,6 +19,10 @@ defmodule ReventDispatcher.EventView do
     event_json(data)
   end
 
+  def render("error.json", %{data: data}) do
+    %{errors: data.errors}
+  end
+
   defp event_json(event) do
     %{
       id: event.id,
