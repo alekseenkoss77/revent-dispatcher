@@ -10,6 +10,7 @@ class HandlerContainer extends React.Component {
 
     this.state = {
       handlers: [],
+      events: [],
       editableHandler: null
     };
 
@@ -26,7 +27,7 @@ class HandlerContainer extends React.Component {
         (response) => {
           this.setState({
             handlers: response.data.handlers,
-            editableEvent: null
+            editableHandler: null
           });
         }
       );
@@ -34,12 +35,13 @@ class HandlerContainer extends React.Component {
 
   handleSave(e, { formData }) {
     e.preventDefault();
+
     const handler = this.state.editableHandler;
     var target = e.target;
 
     if(handler) {
       axios
-        .put("/api/handlers/" + handler.id, {"handler" : formData})
+        .put("/api/handlers/" + handler.id, {"handler": formData})
         .catch((e) => (console.log(e)))
         .then(
           (response) => {
@@ -67,18 +69,37 @@ class HandlerContainer extends React.Component {
   }
 
   handleDestroy(id) {
+    let item = this.state.handlers[id];
+    var _this = this
+
+    axios
+      .delete("/api/handlers/" + item.id)
+      .catch((e) => (console.log(e)))
+      .then(
+        (response) => {
+          let _handlers = _this.state.handlers
+          _handlers.splice(id, 1)
+          _this.setState({
+            handlers: _handlers
+          });
+        }
+      );
 
   }
 
   handleEdit(id) {
+    let item = this.state.handlers[id];
 
+    this.setState({
+      editableHandler: Object.assign(item, { key: id })
+    })
   }
 
   render() {
     return(
       <div>
         <MainMenu />
-        <HandlerForm key={ "eventInput" } editableHandler={ this.state.editableEvent } handleSubmit={ this.handleSave } />
+        <HandlerForm key={ "eventInput" } events={this.state.events} editableHandler={ this.state.editableHandler } handleSubmit={ this.handleSave } />
         <HandlerList handleDestroy={this.handleDestroy} handleEdit={ this.handleEdit } handlersList={ this.state.handlers } />
       </div>
     );

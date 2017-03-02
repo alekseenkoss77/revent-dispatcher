@@ -57,7 +57,6 @@ class EventContainer extends React.Component {
     let item = this.state.events[id];
 
     this.setState({
-      events: this.state.events,
       editableEvent: Object.assign(item, { key: id })
     })
   }
@@ -74,8 +73,7 @@ class EventContainer extends React.Component {
           let _events = _this.state.events
           _events.splice(id, 1)
           _this.setState({
-            events: _events,
-            editableEvent: null
+            events: _events
           });
         }
       );

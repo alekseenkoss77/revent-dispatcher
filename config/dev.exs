@@ -38,6 +38,7 @@ config :revent_dispatcher, amqp_output: [
 # Watch static and templates for browser reloading.
 config :revent_dispatcher, ReventDispatcher.Endpoint,
   live_reload: [
+    url: "ws://localhost:4000",
     patterns: [
       ~r{priv/static/.*(js|css|png|jpeg|jpg|gif|svg)$},
       ~r{priv/gettext/.*(po)$},

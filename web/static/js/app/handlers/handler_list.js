@@ -10,12 +10,19 @@ const HandlerList = (props) => (
     <Table celled striped>
       <Table.Header>
         <Table.Row>
-          <Table.HeaderCell colSpan='3'>Handlers</Table.HeaderCell>
+          <Table.HeaderCell colSpan='4'>Handlers</Table.HeaderCell>
         </Table.Row>
       </Table.Header>
       <Table.Body>
         { props.handlersList.map((h, id) => (
-          <HandlerItem key={id} handlerName={h.name} handlerQueueName={h.queue_name} />
+          <HandlerItem
+            key={id}
+            handlerKey={id}
+            handlerName={h.name}
+            handlerQueueName={h.queue_name}
+            handleEdit={ props.handleEdit }
+            handleDestroy={props.handleDestroy}
+            handlerEvents={h.events} />
         ))}
       </Table.Body>
     </Table>

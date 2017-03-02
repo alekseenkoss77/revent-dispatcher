@@ -1,9 +1,10 @@
 defmodule ReventDispatcher.HandlerView do
   use ReventDispatcher.Web, :view
 
-  def render("index.json", %{handlers: handlers}) do
+  def render("index.json", %{handlers: handlers, events: events}) do
     %{
-      handlers: Enum.map(handlers, &handler_json/1)
+      handlers: Enum.map(handlers, &handler_json/1),
+      events: render_events_list(events)
     }
   end
 
@@ -24,7 +25,11 @@ defmodule ReventDispatcher.HandlerView do
       id: handler.id,
       name: handler.name,
       queue_name: handler.queue_name,
-      events: Enum.map(handler.events, fn(e) -> %{name: e.name} end)
+      events: render_events_list(handler.events)
     }
+  end
+
+  defp render_events_list(events) do
+    Enum.map(events, fn(e) -> %{name: e.name, id: e.id} end)
   end
 end
