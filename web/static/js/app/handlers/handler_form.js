@@ -77,7 +77,7 @@ class HandlerForm extends React.Component {
             <Form.Input label='Name' name='name' placeholder='Name' onChange={ this.handleChange } value={ this.state.name } />
             <Form.Input label='Queue' name='queue_name' placeholder='Queue name' onChange={ this.handleChange } value={ this.state.queue_name } />
           </Form.Group>
-          <Form.Group grouped>
+          <Form.Group grouped inline>
             { this.state.events.map((e, index) => (
                 <Form.Field
                   key={e.id}

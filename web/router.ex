@@ -2,6 +2,7 @@ defmodule ReventDispatcher.Router do
   use ReventDispatcher.Web, :router
 
   pipeline :browser do
+    plug BasicAuth, use_config: {:revent_dispatcher, :basic_auth}
     plug :accepts, ["html"]
     plug :fetch_session
     plug :fetch_flash

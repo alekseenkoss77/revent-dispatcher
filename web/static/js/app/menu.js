@@ -11,9 +11,6 @@ const MainMenu = () => (
       <Link to="/handlers">
         <Menu.Item name='Handlers' />
       </Link>
-      <Menu.Menu position='right'>
-        <Menu.Item name='logout' />
-      </Menu.Menu>
     </Menu>
   </div>
 );

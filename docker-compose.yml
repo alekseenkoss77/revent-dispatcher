@@ -1,0 +1,25 @@
+version: '3'
+services:
+  web:
+    build: .
+    ports:
+     - "5001:4000"
+    volumes:
+     - .:/webapps/revent_dispatcher
+     - /webapps/revent_dispatcher/node_modules
+    links:
+      - postgres
+      - rabbit
+    depends_on:
+      - postgres
+      - rabbit
+  postgres:
+    image: "postgres:9.6.2"
+    environment:
+      POSTGRES_USER: "revent"
+      POSTGRES_PASSWORD: "revent_secret"
+  rabbit:
+    image: "rabbitmq:3.6"
+    environment:
+      RABBITMQ_DEFAULT_USER: "revent"
+      RABBITMQ_DEFAULT_PASS: "revent_secret"

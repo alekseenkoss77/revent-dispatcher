@@ -7,10 +7,9 @@ import { Router, Route, Link, browserHistory } from 'react-router'
 
 const App = () => (
   <Router history={browserHistory}>
-    <Route path="/" component={MainPage} />
+    <Route path="/" component={EventContainer} />
     <Route path="/events" component={EventContainer} />
     <Route path="/handlers" component={HandlerContainer} />
-    <Route path="/*" component={EventContainer} />
   </Router>
 );
 

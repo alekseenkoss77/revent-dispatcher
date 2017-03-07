@@ -22,23 +22,22 @@ config :revent_dispatcher, basic_auth: [
 ]
 
 config :revent_dispatcher, amqp_consume: [
-  username: "guest",
-  password: "guest",
-  host: "localhost",
+  username: "revent",
+  password: "revent_secret",
+  host: "rabbit",
   port: 5672
 ]
 
 config :revent_dispatcher, amqp_output: [
-  username: "guest",
-  password: "guest",
-  host: "localhost",
+  username: "revent",
+  password: "revent_secret",
+  host: "rabbit",
   port: 5672
 ]
 
 # Watch static and templates for browser reloading.
 config :revent_dispatcher, ReventDispatcher.Endpoint,
   live_reload: [
-    url: "ws://localhost:4000",
     patterns: [
       ~r{priv/static/.*(js|css|png|jpeg|jpg|gif|svg)$},
       ~r{priv/gettext/.*(po)$},
@@ -57,8 +56,8 @@ config :phoenix, :stacktrace_depth, 20
 # Configure your database
 config :revent_dispatcher, ReventDispatcher.Repo,
   adapter: Ecto.Adapters.Postgres,
-  username: "teachbase",
-  password: "teachbase",
+  username: "revent",
+  password: "revent_secret",
   database: "revent_dispatcher_dev",
-  hostname: "localhost",
+  hostname: "postgres",
   pool_size: 10
