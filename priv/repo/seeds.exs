@@ -15,8 +15,8 @@ alias ReventDispatcher.Event
 alias ReventDispatcher.Handler
 
 handler_params = %{
-  name: "Email Worker",
-  queue_name: "email_worker",
+  name: "Logger",
+  queue_name: "logger_queue",
   events: [
     %{name: "account.create"},
     %{name: "account.update"},

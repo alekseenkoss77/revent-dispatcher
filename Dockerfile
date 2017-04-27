@@ -26,4 +26,4 @@ RUN mix compile
 
 ENV PORT 4000
 
-CMD [“mix”, “do”, “ecto.migrate,”, “phoenix.server”]
+CMD mix phoenix.server
