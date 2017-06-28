@@ -16,6 +16,12 @@ config :revent_dispatcher, amqp_consume: [
   port: 5672
 ]
 
+config :revent_dispatcher, basic_auth: [
+  username: "admin",
+  password: "admin",
+  realm: 'adminzone',
+]
+
 config :revent_dispatcher, amqp_output: [
   username: "guest",
   password: "guest",

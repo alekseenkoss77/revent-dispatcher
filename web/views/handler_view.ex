@@ -20,6 +20,10 @@ defmodule ReventDispatcher.HandlerView do
     handler_json(data)
   end
 
+  def render("errors.json", %{errors: errors}) do
+    %{errors: Enum.map(errors, &error_json/1)}
+  end
+
   defp handler_json(handler) do
     %{
       id: handler.id,
@@ -31,5 +35,9 @@ defmodule ReventDispatcher.HandlerView do
 
   defp render_events_list(events) do
     Enum.map(events, fn(e) -> %{name: e.name, id: e.id} end)
+  end
+
+  defp error_json({name, {message, _}}) do
+    "#{name} #{message}"
   end
 end

@@ -18,7 +18,7 @@ defmodule ReventDispatcher.HandlerController do
       {:error, changeset} ->
         conn
         |> put_status(403)
-        |> render("error.json", changeset: changeset)
+        |> render("errors.json", errors: changeset.errors)
     end
   end
 
@@ -32,7 +32,7 @@ defmodule ReventDispatcher.HandlerController do
       {:error, changeset} ->
         conn
         |> put_status(403)
-        |> render("error.json", changeset: changeset)
+        |> render("errors.json", errors: changeset.errors)
     end
   end
 
@@ -42,7 +42,7 @@ defmodule ReventDispatcher.HandlerController do
       {:error, changeset} ->
         conn
         |> put_status(404)
-        |> render("errors.json", changeset: changeset)
+        |> render("errors.json", errors: changeset.errors)
     end
   end
 end

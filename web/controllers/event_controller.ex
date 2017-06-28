@@ -16,7 +16,7 @@ defmodule ReventDispatcher.EventController do
       {:error, changeset} ->
         conn
         |> put_status(403)
-        |> render("error.json", changeset: changeset)
+        |> render("errors.json", errors: changeset.errors)
     end
   end
 
@@ -30,7 +30,7 @@ defmodule ReventDispatcher.EventController do
       {:error, changeset} ->
         conn
         |> put_status(403)
-        |> render("error.json", changeset: changeset)
+        |> render("errors.json", errors: changeset)
     end
   end
 

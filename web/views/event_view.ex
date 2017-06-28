@@ -19,8 +19,8 @@ defmodule ReventDispatcher.EventView do
     event_json(data)
   end
 
-  def render("error.json", %{data: data}) do
-    %{errors: data.errors}
+  def render("errors.json", %{errors: errors}) do
+    %{errors: Enum.map(errors, &error_json/1)}
   end
 
   defp event_json(event) do
@@ -28,5 +28,9 @@ defmodule ReventDispatcher.EventView do
       id: event.id,
       name: event.name
     }
+  end
+
+  defp error_json({name, {message, _}}) do
+    "#{name} #{message}"
   end
 end

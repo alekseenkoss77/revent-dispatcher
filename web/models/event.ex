@@ -14,6 +14,7 @@ defmodule ReventDispatcher.Event do
     event
     |> cast(params, [:name])
     |> validate_required([:name])
+    |> unique_constraint(:name)
   end
 
   def find_by_name(event_name) do 

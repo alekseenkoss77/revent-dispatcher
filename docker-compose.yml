@@ -6,11 +6,12 @@ services:
       POSTGRES_USER: "revent"
       POSTGRES_PASSWORD: "revent_secret"
   rabbit:
-    image: "rabbitmq:3.6"
+    image: "rabbitmq:3.6.9-management"
     ports:
       - "5672:5672"
       - "5671:5671"
       - "25672:25672"
+      - "15672:15672"
     environment:
       RABBITMQ_DEFAULT_USER: "revent"
       RABBITMQ_DEFAULT_PASS: "revent_secret"
